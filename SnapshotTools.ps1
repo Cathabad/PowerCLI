@@ -101,7 +101,7 @@ function Remove-Snaps5DaysOld {
             $frequency = 30 ## seconds - check every 30 seconds for this task
             ## Start a timer
             $timer = [Diagnostics.Stopwatch]::StartNew()
-            $snapremoval = Get-Snapshot -VM $vmName -Id $snapID | Remove-Snapshot -RemoveChildren -whatif
+            $snapremoval = Get-Snapshot -VM $vmName -Id $snapID | Remove-Snapshot -RemoveChildren -RunAsync -whatif
             # placing the remove-snapshot in a variable like above actually captures the task that is created for this job.  Below we capitalize on that to track the task
             $task = $snapremoval.Id
             try {
